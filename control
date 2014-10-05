@@ -1,0 +1,8 @@
+Package: org.thebigboss.camtoggleblur
+Name: CamToggleBlur
+Depends: mobilesubstrate, firmware (>= 7.0), gsc.still-camera | gsc.front-facing-camera
+Version: 1.0
+Architecture: iphoneos-arm
+Description: Toggle for blur transition effect in camera app.
+Author: PoomSmart
+Section: Tweaks
