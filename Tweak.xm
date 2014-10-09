@@ -243,7 +243,7 @@ static char blurSpecifierKey;
 	insertionIndex++;
 	PSSpecifier *blurSpecifier = [PSSpecifier preferenceSpecifierNamed:@"Blur Animation" target:self set:@selector(setCameraWantsBlurAnimation:specifier:) get:@selector(cameraWantsBlurAnimation:) detail:nil cell:[PSTableCell cellTypeFromString:@"PSSwitchCell"] edit:nil];
 	id defaultValue = @([[UIDevice currentDevice] _graphicsQuality] == 100);
-	[blurSpecifier setProperty:defaultValue forKey:PSDefaultsKey];
+	[blurSpecifier setProperty:(NSString *)MobileSlideShow forKey:PSDefaultsKey];
 	[blurSpecifier setProperty:(NSString *)BlurAnimationNotification forKey:PSValueChangedNotificationKey];
 	[blurSpecifier setProperty:defaultValue forKey:PSDefaultValueKey];
 	[specifiers insertObject:blurSpecifier atIndex:insertionIndex];
