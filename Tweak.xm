@@ -69,7 +69,7 @@ static void preferencesDidChange_hook(id view)
 	id value = [cameraConfiguration objectForKeyedSubscript:BlurAnimationKey];
 	if (value != nil)
 		[view setBlurAnimationEnabled:[value boolValue]];
-    CFPreferencesAppSynchronize(CFSTR("com.apple.camera"));
+	CFPreferencesAppSynchronize(CFSTR("com.apple.camera"));
 }
 
 //##### iOS 7 #####
@@ -195,13 +195,13 @@ static char blurSpecifierKey;
 %new(v@:@)
 - (void)_set_blur_specifier:(id)object
 {
-    objc_setAssociatedObject(self, &blurSpecifierKey, object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+	objc_setAssociatedObject(self, &blurSpecifierKey, object, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 %new(@@:)
 - (id)_blur_specifier
 {
-    return objc_getAssociatedObject(self, &blurSpecifierKey);
+	return objc_getAssociatedObject(self, &blurSpecifierKey);
 }
 
 %new
@@ -218,13 +218,13 @@ static char blurSpecifierKey;
 %new
 - (void)setCameraWantsBlurAnimation:(id)value specifier:(PSSpecifier *)specifier
 {
-    CFPreferencesAppSynchronize(MobileSlideShow);
+	CFPreferencesAppSynchronize(MobileSlideShow);
 	NSDictionary *cameraConfiguration = [(NSDictionary *)CFPreferencesCopyAppValue(CameraConfiguration, MobileSlideShow) autorelease];
 	NSMutableDictionary *mutableCameraConfiguration = [[cameraConfiguration mutableCopy] autorelease];
-    [mutableCameraConfiguration setObject:value forKeyedSubscript:BlurAnimationKey];
-    NSDictionary *editedCameraConfiguration = [[mutableCameraConfiguration copy] autorelease];
-    CFPreferencesSetAppValue(CameraConfiguration, editedCameraConfiguration, MobileSlideShow);
-    CFPreferencesAppSynchronize(MobileSlideShow);
+	[mutableCameraConfiguration setObject:value forKeyedSubscript:BlurAnimationKey];
+	NSDictionary *editedCameraConfiguration = [[mutableCameraConfiguration copy] autorelease];
+	CFPreferencesSetAppValue(CameraConfiguration, editedCameraConfiguration, MobileSlideShow);
+	CFPreferencesAppSynchronize(MobileSlideShow);
 	CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), BlurAnimationNotification, NULL, NULL, NO);
 }
 
@@ -233,7 +233,7 @@ static char blurSpecifierKey;
 	if (MSHookIvar<NSMutableArray *>(self, "_specifiers") != nil)
 		return %orig();
 	NSMutableArray *specifiers = %orig();
-	NSUInteger insertionIndex;
+	NSUInteger insertionIndex = NSNotFound;
 	for (PSSpecifier *spec in specifiers) {
 		if ([[spec propertyForKey:@"label"] isEqualToString:@"CAMERA"])
 			insertionIndex = [specifiers indexOfObject:spec];
