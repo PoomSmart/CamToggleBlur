@@ -8,7 +8,7 @@ extern NSString *const PSDefaultsKey;
 extern NSString *const PSValueChangedNotificationKey;
 extern NSString *const PSTableCellKey;
 extern NSString *const PSDefaultValueKey;
-NSString *const BlurAnimationKey = @"EnableBlurAnimation";
+static NSString *const BlurAnimationKey = @"EnableBlurAnimation";
 CFStringRef BlurAnimationNotification = CFSTR("com.apple.mobileslideshow.PreferenceChanged");
 CFStringRef MobileSlideShow = CFSTR("com.apple.mobileslideshow");
 CFStringRef CameraConfiguration = CFSTR("CameraConfiguration");
@@ -130,7 +130,7 @@ static void preferencesDidChange_hook(id view)
 //##### iOS 8 #####
 %group Camera8
 
-%hook CAMApplicationCameraViewController
+%hook CAMApplicationViewController
 
 - (void)_applyConfiguration
 {
